@@ -1,4 +1,8 @@
-# ES6 Node Express Vue-cli
+# ES6 Node Express MongoDB Vue-cli
+
+## MongoDB
+
+* start MongoDB in your localhost
 
 ## Server setup
 
