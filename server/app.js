@@ -5,8 +5,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 
-import db from './config/db'
-import router from './routes/all'
+// var session = require('express-session');
+// var MongoStore = require('connecet-mongo')(session);
+
+import db from './config/db';
+import router from './routes/all';
 var app = express();
 
 // view engine setup
@@ -23,7 +26,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+
+
 
 // init route 
 router(app);

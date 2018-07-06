@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost/test');
+let db_url = 'mongodb://localhost:27017/test';
+
+mongoose.connect(db_url);
 
 const db = mongoose.connection;
 
