@@ -1,5 +1,5 @@
 import express from 'express';
-import userHandle from '../controllers/users/users'
+import userHandle from '../controllers/user/user'
 let router = express.Router();
 
 // get user list

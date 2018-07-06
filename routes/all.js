@@ -1,7 +1,7 @@
 import index from './index'
-import users from './users'
+import user from './user'
 
 export default app => {
 	app.use('/', index);
-	app.use('/users', users);
+	app.use('/users', user);
 }
