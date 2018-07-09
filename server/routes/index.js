@@ -7,5 +7,11 @@ router.get('/', (req, res, next) => {
   res.send('index');
 });
 
+router.get('/login', () => {});
+
+router.post('/login', () => {});
+
+
+
 
 export default router
