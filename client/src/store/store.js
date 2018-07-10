@@ -5,12 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-      show: false
+    	signin: false,
     },
     mutations: {
-      switchShow(state) {
-        state.show = !state.show;
-      }
+    	changeLoginStatus(state) {
+    		state.signin = !state.signin;
+    	}
     }
 });
 

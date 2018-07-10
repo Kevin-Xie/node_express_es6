@@ -1,14 +1,10 @@
 <template>
   <div class="hello">
-    <h1 v-show="show">{{ msg }}</h1>   
-    <el-button @click="changeShow">changeShow</el-button> 
-    <el-switch v-model="show"></el-switch>
+    <h1>{{ msg }}</h1>   
   </div>
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
-
 export default {
   name: 'HelloWorld',
   data () {
@@ -17,14 +13,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      changeShow: 'switchShow'
-    })
+
   },
   computed: {
-    ...mapState({
-      show: state => state.show
-    })
+
   }
 }
 </script>
