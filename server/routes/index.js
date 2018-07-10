@@ -1,17 +1,7 @@
-import express from 'express';
-let router = express.Router();
+import home from './home'
+import user from './user'
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  // res.render('index', { title: 'Express' });
-  res.send('index');
-});
-
-router.get('/login', () => {});
-
-router.post('/login', () => {});
-
-
-
-
-export default router
+export default app => {
+	app.use('/', home);
+	app.use('/users', user);
+}

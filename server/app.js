@@ -9,7 +9,7 @@ var logger = require('morgan');
 // var MongoStore = require('connecet-mongo')(session);
 
 import db from './config/db';
-import router from './routes/all';
+import router from './routes';
 var app = express();
 
 // view engine setup
