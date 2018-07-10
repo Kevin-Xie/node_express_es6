@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="wrapper">
     <el-form>
       <el-form-item>
         <el-input placeholder="手机号/邮箱/用户名"></el-input>
@@ -27,6 +27,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .el-form {
-  width: 300px;
+
+
+}
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 </style>
