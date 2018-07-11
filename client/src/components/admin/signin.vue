@@ -30,6 +30,9 @@ export default {
   methods: {
     doSignIn() {
       console.log(this.loginId, this.password);
+      this.$http.get('/api/users')
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
       this.changeLoginStatus();
       if(this.signin)
         this.$router.push('/home')

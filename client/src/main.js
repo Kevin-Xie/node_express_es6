@@ -6,11 +6,12 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/store'
+import Axios from 'axios'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
-
+Vue.prototype.$http = Axios;
 
 
 /* eslint-disable no-new */
