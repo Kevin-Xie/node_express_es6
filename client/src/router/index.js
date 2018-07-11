@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Signin from '@/components/admin/signin'
-import Home from '@/components/home/home'
+import Login from '@/components/login/login'
 import NotFound from '@/components/error/404'
-import Index from '@/pages/index'
+import Homepage from '@/components/home/homepage'
+import Home from '@/components/home/home'
 
 Vue.use(Router)
 
@@ -12,23 +12,27 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: Index,
+      name: 'homepage',
+      component: Homepage,
       children: [
         {
           path: '',
-          redirect: '/home',
+          redirect: 'home',
         },
         {
-          path: '/home',
+          path: 'home',
           component: Home
+        },
+        {
+          path: 'helloworld',
+          component: HelloWorld
         }
       ]
     },
     {
-    	path: '/signin',
-    	name: 'signin',
-    	component: Signin
+    	path: '/login',
+    	name: 'login',
+    	component: Login
     },
     {
       path: '*',

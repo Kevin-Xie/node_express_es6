@@ -19,7 +19,7 @@
 import {mapMutations} from 'vuex';
 
 export default {
-  name: 'signin',
+  name: 'login',
   data () {
     return {
       loginId: '',
