@@ -8,7 +8,7 @@
 				<slot name="menubar"></slot>
 			</el-col>
 			<el-col :span=2>
-				<slot name="right"></slot>
+				<slot name="userInfo"></slot>
 			</el-col>
 		</el-row>
 	</div>
@@ -21,6 +21,8 @@ export default {
 		return {
 
 		}
+	},
+	methods: {
 	}
 }
 </script>
