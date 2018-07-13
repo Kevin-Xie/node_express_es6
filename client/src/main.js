@@ -11,7 +11,8 @@ import Axios from 'axios'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
-Vue.prototype.$http = Axios;
+
+Object.defineProperty(Vue.prototype, '$http', {value: Axios});
 
 
 /* eslint-disable no-new */
