@@ -46,3 +46,26 @@
         Object.defineProperty(Vue.prototype, '_', {value: _});
         ```
         ![assign_err](./pictures/assign_err.png)
+
+
+4. 父子组件生命周期顺序
+    * 加载渲染过程
+        父beforeCreate->父created->父beforeMount->子beforeCreate->子created->子beforeMount->子mounted->父mounted
+    * 子组件更新过程
+        父beforeUpdate->子beforeUpdate->子updated->父updated
+    * 父组件更新过程
+        父beforeUpdate->父updated
+    * 销毁过程
+        父beforeDestroy->子beforeDestroy->子destroyed->父destroyed
+
+
+5. 父组件异步获取数据， 传递给子组件的渲染问题
+    *  渲染父子组件时， 要等所有子组件都 mounted 完了, 父组件才会 mounted
+    *  父组件在 mounted 里面进行异步获取数据，所以子组件 mounted 的时候就会拿不到数据
+    *  可以在父组件里面给子组件加多一个标志位，等到异步获取到数据之后，再设置 isDataReturn = true。这样会等到拿到数据的时候再渲染子组件。
+    ```javascript
+        <div style="display: flex;">
+            <v-alert-by-severity :result="countBySeverity" v-if="isDataReturn"></v-alert-by-severity>
+            <v-alert-by-project></v-alert-by-project>
+        </div>
+    ```
