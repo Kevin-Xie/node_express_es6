@@ -1,6 +1,6 @@
 import http from 'axios';
 
-export default class ApiBase() {
+export default class ApiBase {
 	constructor() {
 
 	};

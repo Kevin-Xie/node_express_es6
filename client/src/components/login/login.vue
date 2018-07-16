@@ -8,8 +8,8 @@
         <el-input type="password" placeholder="密码" v-model="password"><el-switch slot="append"></el-switch></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="doSignIn">登录</el-button>
-        <el-button v-show="false" @click="doSignUp">注册</el-button>
+        <el-button @click="doLogin">登录</el-button>
+        <el-button v-show="false" @click="register">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -17,7 +17,8 @@
 
 <script>
 import {mapMutations} from 'vuex';
-import {getUserList} from '../../api';
+import {getUserList} from '../../api/user';
+
 export default {
   name: 'login',
   data () {
@@ -28,16 +29,16 @@ export default {
     }
   },
   methods: {
-    doSignIn() {
+    doLogin() {
       console.log(this.loginId, this.password);
       getUserList()
       .then(data => console.log(data))
       .catch(err => console.log(err))
       // this.changeLoginStatus();
-      // if(this.signin)
+      // if(this.login)
       //   this.$router.push('/home')
     },
-    doSignUp() {
+    register() {
 
     },
     ...mapMutations([
@@ -45,8 +46,8 @@ export default {
       ])
   },
   computed: {
-    signin() {
-      return this.$store.state.signin;
+    login() {
+      return this.$store.state.login;
     }
   }
 }
@@ -56,7 +57,7 @@ export default {
 <style scoped>
 .wrapper {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 35%;
+    left: 35%;
 }
 </style>
