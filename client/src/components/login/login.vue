@@ -17,7 +17,7 @@
 
 <script>
 import {mapMutations} from 'vuex';
-
+import {getUserList} from '../../api';
 export default {
   name: 'login',
   data () {
@@ -30,12 +30,12 @@ export default {
   methods: {
     doSignIn() {
       console.log(this.loginId, this.password);
-      this.$http.get('/api/users')
+      getUserList()
       .then(data => console.log(data))
-      .catch(err => console.log(err));
-      this.changeLoginStatus();
-      if(this.signin)
-        this.$router.push('/home')
+      .catch(err => console.log(err))
+      // this.changeLoginStatus();
+      // if(this.signin)
+      //   this.$router.push('/home')
     },
     doSignUp() {
 
@@ -54,10 +54,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.el-form {
-
-
-}
 .wrapper {
     position: absolute;
     top: 50%;
