@@ -1,5 +1,7 @@
 <template>
-    <div>userInfo</div>
+    <div>
+    	<i class="el-icon-bell"></i>
+    </div>
     
 </template>
 
