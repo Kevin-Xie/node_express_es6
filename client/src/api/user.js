@@ -3,7 +3,8 @@ import http from 'axios';
 
 export const login = async (loginId, password) => {
 	try {
-		return await http.post('/api/login', {loginId, password});
+        let user = await http.post('/api/login', {loginId, password});
+        return user.data;
 	} catch (error) {
 		throw new Error(error);
 	}

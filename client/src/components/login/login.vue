@@ -17,7 +17,7 @@
 
 <script>
 import {mapMutations} from 'vuex';
-import {getUserList} from '../../api/user';
+import {login} from '../../api/user';
 
 export default {
   name: 'login',
@@ -31,8 +31,8 @@ export default {
   methods: {
     doLogin() {
       console.log(this.loginId, this.password);
-      getUserList()
-      .then(data => console.log(data))
+      login(this.loginId, this.password)
+      .then(user => console.log(user))
       .catch(err => console.log(err))
       // this.changeLoginStatus();
       // if(this.login)
