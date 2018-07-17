@@ -1,7 +1,10 @@
 import home from './home'
-import user from './user'
+import admin from './admin'
 
 export default app => {
+
 	app.use('/', home);
-	app.use('/users', user);
+
+	app.use('/admin', admin);
+	
 }
