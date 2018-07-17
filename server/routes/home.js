@@ -1,3 +1,4 @@
+
 import express from 'express';
 let router = express.Router();
 
@@ -12,6 +13,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+  console.log(req.session)
   res.json({name: 'kevin'})
 });
 

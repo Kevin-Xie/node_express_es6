@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 
-// var session = require('express-session');
-// var MongoStore = require('connecet-mongo')(session);
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+import settings from './config/default';
 
 import db from './config/db';
 import router from './routes';
@@ -28,8 +29,16 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-
-
+// init session, save session to DB
+app.use(session({
+  secret: settings.cookieSecret,
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({
+    url: settings.db_url
+  })
+}));
 
 // init route 
 router(app);
