@@ -7,9 +7,13 @@ router.get('/', (req, res, next) => {
   res.send('index');
 });
 
-router.get('/login', () => {});
+router.get('/login', (req, res, next) => {
+  res.json({});
+});
 
-router.post('/login', () => {});
+router.post('/login', (req, res, next) => {
+  res.json({name: 'kevin'})
+});
 
 
 
