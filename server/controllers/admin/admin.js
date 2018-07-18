@@ -1,16 +1,18 @@
-import UserModel from '../../models/user/user'
+import UserModel from '../../models/user/user';
+const crypto = require('crypto');
 
 class UserHandle {
 	constructor() {
 		this.register = this.register.bind(this);
 		this.createNewUser = this.createNewUser.bind(this);
+		this.cryption = this.cryption.bind(this);
 	};
 	
 	async register(req, res, next) {
 		try {
 			let newUser = {
 					userName: req.body.userName,
-					password: req.body.password,
+					password: this.cryption(req.body.password),
 				}
 			let result = await this.createNewUser(newUser);
 			res.json({isSuccess: true, userId: result._id});
@@ -22,6 +24,11 @@ class UserHandle {
 
 	login(req, res, next) {
 		res.send(req.body);
+	};
+
+	cryption(password) {
+		const sha1 = crypto.createHash('sha1');
+		return sha1.update(password).digest('hex');
 	};
 
 	async findByUserName(userName){
