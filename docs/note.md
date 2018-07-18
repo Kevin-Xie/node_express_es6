@@ -69,3 +69,6 @@
             <v-alert-by-project></v-alert-by-project>
         </div>
     ```
+
+6. ES6 class this ， 在class 里面的方法调用内部方法
+
