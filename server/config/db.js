@@ -12,4 +12,9 @@ db.once('open', (callback) => {
 	console.log('connecting on db: test')
 })
 
+// mongoose.connect(db_url)
+// 		.then()
+
+
+
 export default db;

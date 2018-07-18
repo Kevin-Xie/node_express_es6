@@ -7,17 +7,32 @@ const UserSchema = new Schema({
 	userName: {
 		type: String
 	},
-	password: {
-		type: String
-	},
+
 	phoneNumber: {
 		type: Number
 	},
+
+	email: {
+		type: String,
+		lowercase: true
+	},
+
+	password: {
+		type: String
+	},
+
 	salt: {
 		type: String
 	},
+
+	updateDate: {
+		type: Date,
+		default: Date.now
+	},
+
 	createDate: {
-		type: Date
+		type: Date,
+		default: Date.now
 	},
 });
 
