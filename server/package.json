@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "prod": "node ../client/build/build.js && node index.js"
+    "prod": "node ../client/build/build.js && node index.js",
+    "test": "mocha ./test/user/user.test.js --require babel-core/register"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -23,6 +24,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-runtime": "^6.26.0",
+    "chai": "^4.1.2",
     "nodemon": "^1.17.5"
   }
 }
