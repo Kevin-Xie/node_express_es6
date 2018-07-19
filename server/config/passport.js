@@ -1,5 +1,5 @@
 const passport = require('passport');
-const localStrategy = require('passport-local')
+const localStrategy = require('passport-local').Strategy;
 import User from '../models/user/user';
 
 export default app => {
