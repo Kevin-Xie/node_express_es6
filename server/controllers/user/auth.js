@@ -1,9 +1,11 @@
 import UserModel from '../../models/user/user';
 
-class UserHandle {
+class UserAuthHandle {
 	constructor() {
 		this.register = this.register.bind(this);
 		this.createNewUser = this.createNewUser.bind(this);
+		this.login = this.login.bind(this);
+		this.findByUserName = this.findByUserName.bind(this);
 	};
 	
 	async register(req, res, next) {
@@ -13,15 +15,30 @@ class UserHandle {
 					password: req.body.password,
 				}
 			let result = await this.createNewUser(newUser);
-			res.json({isSuccess: true, userId: result._id});
+			// remove sensitive data, before send to client side.
+			result.password = null;	
+			result.salt = null;
+			res.json(result);
 		} catch (error) {
-			res.json({isSuccess: false})
 			next(error);
 		}
 	};
 
-	login(req, res, next) {
-		res.send(req.body);
+	async login(req, res, next) {
+		try {
+			let {userName, password} = req.body;
+			let user = await this.findByUserName(userName);
+			if(user && user.authenticate(password)) {
+				req.session.user = user;
+				user.password = null;
+				user.salt = null;
+				res.json(user);
+			} else {
+				res.json({error: 'Invalid userName or password'})
+			}
+		} catch (error) {
+			next(error);
+		}
 	};
 
 	async findByUserName(userName){
@@ -44,4 +61,4 @@ class UserHandle {
 
 
 
-export default new UserHandle();
+export default new UserAuthHandle();
