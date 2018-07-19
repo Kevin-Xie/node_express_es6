@@ -9,7 +9,7 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="doLogin">登录</el-button>
-        <el-button v-show="false" @click="register">注册</el-button>
+        <el-button @click="doRegister">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -17,7 +17,7 @@
 
 <script>
 import {mapMutations} from 'vuex';
-import {login} from '../../api/user';
+import {login, register} from '../../api/user';
 
 export default {
   name: 'login',
@@ -38,8 +38,10 @@ export default {
       // if(this.login)
       //   this.$router.push('/home')
     },
-    register() {
-
+    doRegister() {
+      register(this.loginId, this.password)
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
     },
     ...mapMutations([
         'changeLoginStatus'

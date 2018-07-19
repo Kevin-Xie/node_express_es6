@@ -5,6 +5,6 @@ export default app => {
 
 	app.use('/', home);
 
-	app.use('/admin', admin);
+	app.use('/auth', admin);
 	
 }
