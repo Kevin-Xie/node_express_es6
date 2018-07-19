@@ -41,6 +41,10 @@ class UserAuthHandle {
 		}
 	};
 
+	logout(req, res, next) {
+		res.send('logout');
+	};
+
 	async findByUserName(userName){
 		try {
 			let user = await UserModel.findOne({userName});

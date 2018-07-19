@@ -7,9 +7,11 @@ var logger = require('morgan');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+
 import settings from './config/default';
 
 import db from './config/db';
+import passport from './config/passport';
 import router from './routes';
 var app = express();
 
@@ -40,8 +42,14 @@ app.use(session({
   })
 }));
 
+
+// init passport
+passport(app);
+
+
 // init route 
 router(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

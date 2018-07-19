@@ -11,5 +11,8 @@ router.post('/register', UserAuthHandle.register);
 router.post('/login', UserAuthHandle.login);
 
 
+// logout
+router.get('/logout', UserAuthHandle.logout);
+
 
 export default router;
