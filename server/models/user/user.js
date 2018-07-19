@@ -24,16 +24,11 @@ const UserSchema = new Schema({
 	salt: {
 		type: String
 	},
-
-	updateDate: {
-		type: Date,
-		default: Date.now
-	},
-
-	createDate: {
-		type: Date,
-		default: Date.now
-	},
+}, {
+	timestamps: {
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt'
+	}
 });
 
 
@@ -47,6 +42,9 @@ UserSchema.pre('save', function(next){
 })
 
 UserSchema.methods.hashPassword = function(password) {
+	if(this.salt && this.password) {
+		return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64, 'SHA1').toString('base64');
+	}
 	return password;
 }
 
