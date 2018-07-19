@@ -2,7 +2,7 @@
   <div class="wrapper">
     <el-form>
       <el-form-item>
-        <el-input placeholder="手机号/邮箱/用户名" v-model="loginId"></el-input>
+        <el-input placeholder="手机号/邮箱/用户名" v-model="userName"></el-input>
       </el-form-item>
       <el-form-item>
         <el-input type="password" placeholder="密码" v-model="password"><el-switch slot="append"></el-switch></el-input>
@@ -23,15 +23,15 @@ export default {
   name: 'login',
   data () {
     return {
-      loginId: '',
+      userName: '',
       password: '',
 
     }
   },
   methods: {
     doLogin() {
-      console.log(this.loginId, this.password);
-      login(this.loginId, this.password)
+      console.log(this.userName, this.password);
+      login(this.userName, this.password)
       .then(user => console.log(user))
       .catch(err => console.log(err))
       // this.changeLoginStatus();
@@ -39,7 +39,7 @@ export default {
       //   this.$router.push('/home')
     },
     doRegister() {
-      register(this.loginId, this.password)
+      register(this.userName, this.password)
       .then(data => console.log(data))
       .catch(err => console.log(err));
     },
