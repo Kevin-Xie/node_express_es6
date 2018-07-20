@@ -1,4 +1,5 @@
 import UserModel from '../../models/user/user';
+import passport from 'passport';
 
 class UserAuthHandle {
 	constructor() {
@@ -14,35 +15,43 @@ class UserAuthHandle {
 					userName: req.body.userName,
 					password: req.body.password,
 				}
-			let result = await this.createNewUser(newUser);
+			let user = await this.createNewUser(newUser);
 			// remove sensitive data, before send to client side.
-			result.password = null;	
-			result.salt = null;
-			res.json(result);
+			user.password = null;	
+			user.salt = null;
+			req.login(user, err => {
+				if(err) {
+					console.log(err);
+					res.status(400).send(err);
+				} else {
+					res.status(200).json(user);
+				}	
+			})
 		} catch (error) {
 			next(error);
 		}
 	};
 
 	async login(req, res, next) {
-		try {
-			let {userName, password} = req.body;
-			let user = await this.findByUserName(userName);
-			if(user && user.authenticate(password)) {
-				req.session.user = user;
-				user.password = null;
-				user.salt = null;
-				res.json(user);
+		passport.authenticate('local', (err, user, info) => {
+			if(err || !user) {
+				res.status(422).send(info);
 			} else {
-				res.json({error: 'Invalid userName or password'})
+				req.login(user, err => {
+					if(err) {
+						console.log(err);
+						res.status(400).send(err);
+					} else {
+						res.json(user);
+					}
+				})
 			}
-		} catch (error) {
-			next(error);
-		}
+		})(req, res, next);
 	};
 
 	logout(req, res, next) {
-		res.send('logout');
+		req.logout();
+		res.send(req.session);
 	};
 
 	async findByUserName(userName){
