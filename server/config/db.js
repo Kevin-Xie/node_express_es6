@@ -2,19 +2,15 @@ import mongoose from 'mongoose';
 
 let db_url = 'mongodb://localhost:27017/test';
 
-mongoose.connect(db_url, {useNewUrlParser: true});
+let options = {
+	useNewUrlParser: true
+}
 
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'))
-
-db.once('open', (callback) => {
-	console.log('connecting on db: test')
-})
-
-// mongoose.connect(db_url)
-// 		.then()
+mongoose.connect(db_url, options)
+	.then(() => {
+		console.log(`connecting on DB: ${db_url}`);
+	})
+	.catch( err => console.error('connection error'));
 
 
-
-export default db;
+export default mongoose.connection;

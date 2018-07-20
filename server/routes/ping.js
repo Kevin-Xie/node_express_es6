@@ -1,10 +1,9 @@
 import express from 'express';
 let router = express.Router();
 
-/* GET home page. */
+// Test if backend alive
 router.get('/', (req, res, next) => {
-  // res.render('index', { title: 'Express' });
-  res.send('all api')
+  res.render('index', { title: 'Ping' });
 });
 
 

@@ -4,10 +4,12 @@ import User from '../models/user/user';
 
 export default app => {
 
+	// serializer user id into session
 	passport.serializeUser((user, done) => {
 		done(null, user._id);
 	});
 
+	// get user info by id(from session)
 	passport.deserializeUser((_id, done) => {
 		User.findById(_id, '-password -salt', function(err, user) {
 			done(null, user);
@@ -33,6 +35,7 @@ export default app => {
 		})
 	}));
 
+	// init passport&passport session
 	app.use(passport.initialize());
 	app.use(passport.session());
 }

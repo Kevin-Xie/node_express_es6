@@ -1,13 +1,16 @@
-import home from './home'
+import ping from './ping'
 import auth from './auth'
-import allApi from './allApi'
+import apis from './apis'
 
 export default app => {
 
-	app.use('/', home);
+	// Test if backend alive
+	app.use('/ping', ping);
 
-	app.use('/api', allApi);
+	// List all the api
+	app.use('/api', apis);
 
+	// Authentication
 	app.use('/api/auth', auth);
 	
 }
