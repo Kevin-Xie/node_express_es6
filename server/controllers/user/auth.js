@@ -51,7 +51,7 @@ class UserAuthHandle {
 
 	logout(req, res, next) {
 		req.logout();
-		res.send(req.session);
+		res.redirect('/');
 	};
 
 	async findByUserName(userName){
