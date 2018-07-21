@@ -1,4 +1,4 @@
-export * from './user'
+export {login, register} from './user'
 
 
 

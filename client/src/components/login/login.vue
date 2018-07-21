@@ -17,7 +17,7 @@
 
 <script>
 import {mapMutations} from 'vuex';
-import {login, register} from '../../api/user';
+import {login, register} from '../../api';
 
 export default {
   name: 'login',
