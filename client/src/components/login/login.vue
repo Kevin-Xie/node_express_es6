@@ -30,13 +30,11 @@ export default {
   },
   methods: {
     doLogin() {
-      console.log(this.userName, this.password);
-      // login(this.userName, this.password)
-      // .then(user => console.log(user))
-      // .catch(err => console.log(err))
-      
-      this.userOnline({userName: 'kevin'})  //change login status after login successfully
-      console.log(this.$store.state.user.userName, this.$store.state.login)
+      login(this.userName, this.password)
+      .then(user =>{
+        this.userOnline(user)  //change login status after login successfully
+      } )
+      .catch(err => console.log(err))
     },
     doRegister() {
       register(this.userName, this.password)
@@ -50,11 +48,7 @@ export default {
       this.$emit('closeLoginForm');
     },
   },
-  computed: {
-    login() {
-      return this.$store.state.login;
-    },
-  },
+
   mounted() {
 
   }
