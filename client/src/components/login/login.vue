@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <el-dialog :visible.sync="isShowLoginForm" @close="closeLoginForm">
     <el-form>
       <el-form-item>
         <el-input placeholder="手机号/邮箱/用户名" v-model="userName"></el-input>
@@ -12,7 +12,7 @@
         <el-button @click="doRegister">注册</el-button>
       </el-form-item>
     </el-form>
-  </div>
+   </el-dialog> 
 </template>
 
 <script>
@@ -25,18 +25,18 @@ export default {
     return {
       userName: '',
       password: '',
-
+      isShowLoginForm: true
     }
   },
   methods: {
     doLogin() {
       console.log(this.userName, this.password);
-      login(this.userName, this.password)
-      .then(user => console.log(user))
-      .catch(err => console.log(err))
-      // this.changeLoginStatus();
-      // if(this.login)
-      //   this.$router.push('/home')
+      // login(this.userName, this.password)
+      // .then(user => console.log(user))
+      // .catch(err => console.log(err))
+      
+      this.userOnline({userName: 'kevin'})  //change login status after login successfully
+      console.log(this.$store.state.user.userName, this.$store.state.login)
     },
     doRegister() {
       register(this.userName, this.password)
@@ -44,22 +44,24 @@ export default {
       .catch(err => console.log(err));
     },
     ...mapMutations([
-        'changeLoginStatus'
-      ])
+        'userOnline'
+      ]),
+    closeLoginForm() {
+      this.$emit('closeLoginForm');
+    },
   },
   computed: {
     login() {
       return this.$store.state.login;
-    }
+    },
+  },
+  mounted() {
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.wrapper {
-    position: absolute;
-    top: 35%;
-    left: 35%;
-}
+
 </style>

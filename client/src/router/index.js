@@ -17,11 +17,7 @@ export default new Router({
       children: [
         {
           path: '',
-          redirect: 'home',
-        },
-        {
-          path: 'home',
-          component: Home
+          component: Home,
         },
         {
           path: 'helloworld',
