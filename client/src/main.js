@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI);
 
-Object.defineProperty(Vue.prototype, '$http', {value: Axios});
+// Object.defineProperty(Vue.prototype, '$http', {value: Axios});
 
 
 /* eslint-disable no-new */

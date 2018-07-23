@@ -18,6 +18,7 @@
 <script>
 import {mapMutations} from 'vuex';
 import {login, register} from '../../api';
+import { errorTip, successTip } from '@/components/common/message'
 
 export default {
   name: 'login',
@@ -31,10 +32,14 @@ export default {
   methods: {
     doLogin() {
       login(this.userName, this.password)
-      .then(user =>{
+      .then(user => {
         this.userOnline(user)  //change login status after login successfully
-      } )
-      .catch(err => console.log(err))
+        successTip('Login successfully');
+      })
+      .catch(err => {
+        console.log(err);
+        errorTip('Backend server error, please try it again.');
+      })
     },
     doRegister() {
       register(this.userName, this.password)

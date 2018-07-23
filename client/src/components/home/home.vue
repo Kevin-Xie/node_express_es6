@@ -1,19 +1,7 @@
 <template>
 	<div>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
-		<p>Home component</p>
+		<p>Home</p>
+		<router-view/>
 	</div>
 </template>
 
