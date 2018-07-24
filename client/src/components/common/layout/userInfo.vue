@@ -1,14 +1,13 @@
 <template>
-    <div>
-    	<div v-if="isLogin">
-    		<i class="">{{userName}}</i>
-    	</div>
-    	<div v-else>
-    		<el-button @click="showLoginForm">Login | Register</el-button>
-    		<v-login v-if="loginFormVisible" @closeLoginForm="closeLoginForm"></v-login>
-    	</div>
-    </div>
-    
+  <div>
+  	<div v-if="isLogin">
+  		<i class="">{{userName}}</i>
+  	</div>
+  	<div v-else>
+  		<el-button @click="showLoginForm">Login | Register</el-button>
+  		<v-login v-if="loginFormVisible" @closeLoginForm="closeLoginForm"></v-login>
+  	</div>
+  </div>
 </template>
 
 <<script>
