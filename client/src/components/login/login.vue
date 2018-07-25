@@ -1,7 +1,7 @@
 <template>
-  <el-dialog :visible.sync="isShowLoginForm" @close="closeLoginForm">
-    <el-button @click="showLogin = !showLogin">change</el-button>
+  <el-dialog :visible.sync="isShowLoginForm" @close="closeLoginForm" width='25%'>
     <el-form :model="basicInfo" status-icon :rules="rules" ref="loginForm" v-if="showLogin">
+      <h1>Login</h1>
       <el-form-item prop="userName">
         <el-input placeholder="Mobile | Email | UserName" v-model="basicInfo.userName"></el-input>
       </el-form-item>
@@ -9,11 +9,16 @@
         <el-input type="password" placeholder="Password" v-model="basicInfo.password"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="submitForm('loginForm')">Login</el-button>
-        <el-button @click="resetForm('loginForm')">Reset</el-button>
+        <el-button type="primary" @click="submitForm('loginForm')">Login</el-button>
+      </el-form-item>
+      <el-form-item>
+        <span class="pointer" @click="switchForm">Register</span>
+        <span> | </span>
+        <span class="pointer">Forget password</span>
       </el-form-item>
     </el-form>
     <el-form :model="basicInfo" status-icon :rules="rules" ref="registerForm" v-else>
+      <h1>Register</h1>
       <el-form-item prop="userName">
         <el-input placeholder="Mobile | Email | UserName" v-model="basicInfo.userName"></el-input>
       </el-form-item>
@@ -24,8 +29,10 @@
         <el-input type="password" placeholder="Confirm password" v-model="basicInfo.confirmPassword"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="submitForm('registerForm')">Register</el-button>
-        <el-button @click="resetForm('registerForm')">Reset</el-button>
+        <el-button type="primary" @click="submitForm('registerForm')">Register</el-button>
+      </el-form-item>
+      <el-form-item>
+        <span class="pointer" @click="switchForm">Go login</span>
       </el-form-item>
     </el-form>
    </el-dialog> 
@@ -109,6 +116,9 @@ export default {
     closeLoginForm() {
       this.$emit('closeLoginForm');
     },
+    switchForm() {
+      this.showLogin = !this.showLogin;
+    }
   },
 
   mounted() {
@@ -119,5 +129,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+span {
+  text-decoration: underline;
+}
+.pointer {
+  cursor: pointer;
+}
+button {
+  width: 100%;
+}
 </style>

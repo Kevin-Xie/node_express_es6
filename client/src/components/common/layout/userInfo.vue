@@ -4,13 +4,13 @@
   		<i class="">{{userName}}</i>
   	</div>
   	<div v-else>
-  		<el-button @click="showLoginForm">Login | Register</el-button>
+  		<span class="pointer" @click="showLoginForm">Login | Register</span>
   		<v-login v-if="loginFormVisible" @closeLoginForm="closeLoginForm"></v-login>
   	</div>
   </div>
 </template>
 
-<<script>
+<script>
 import VLogin from '../../login/login'	
 export default {
   name: 'userInfo',
@@ -41,7 +41,9 @@ export default {
 }
 </script>
 
-<<style scoped>
-
+<style scoped>
+.pointer {
+  cursor: pointer;
+}
 </style>
 
