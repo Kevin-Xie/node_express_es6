@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy} from 'passport-local';
-import User from '../models/user/user';
+import User from '../handlers/user/user.model';
 
 export default app => {
 

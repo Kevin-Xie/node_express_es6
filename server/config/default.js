@@ -5,6 +5,6 @@
 // }
 
 export default {
-	cookieSecret: 'backend',
+	cookieSecret: process.env.cookieSecret || 'backend',
 	db_url: 'mongodb://localhost:27017/test',
 }

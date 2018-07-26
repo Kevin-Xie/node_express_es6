@@ -1,12 +1,10 @@
-import UserModel from '../../models/user/user';
 import passport from 'passport';
+import AuthService from './auth.serv';
 
-class UserAuthHandle {
+class AuthHandler {
 	constructor() {
 		this.register = this.register.bind(this);
-		this.createNewUser = this.createNewUser.bind(this);
 		this.login = this.login.bind(this);
-		this.findByUserName = this.findByUserName.bind(this);
 	};
 	
 	async register(req, res, next) {
@@ -15,7 +13,7 @@ class UserAuthHandle {
 					userName: req.body.userName,
 					password: req.body.password,
 				}
-			let user = await this.createNewUser(newUser);
+			let user = await AuthService.createNewUser(newUser);
 			// remove sensitive data, before send to client side.
 			user.password = null;	
 			user.salt = null;
@@ -53,25 +51,7 @@ class UserAuthHandle {
 		req.logout();
 		res.redirect('/');
 	};
-
-	async findByUserName(userName){
-		try {
-			let user = await UserModel.findOne({userName});
-			return user;
-		} catch (error) {
-			throw new Error(error);			
-		}
-	};
-
-	async createNewUser(newUser){
-		try {
-			return await new UserModel(newUser).save()
-		} catch (error) {
-			throw new Error(error);			
-		}
-	}
 }
 
 
-
-export default new UserAuthHandle();
+export default new AuthHandler();
