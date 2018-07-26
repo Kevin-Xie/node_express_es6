@@ -1,5 +1,6 @@
 <template>
   <el-dialog :visible.sync="isShowLoginForm" @close="closeLoginForm" width='25%'>
+      <!-- <h1 slot="title">Login</h1> -->
     <el-form :model="basicInfo" status-icon :rules="rules" ref="loginForm" v-if="showLogin">
       <h1>Login</h1>
       <el-form-item prop="userName">
