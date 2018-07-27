@@ -72,3 +72,14 @@
 
 6. ES6 class this ， 在class 里面的方法调用内部方法
 
+
+
+7. 使用webpack.ProvidePlugins 来加载一些工具库，例如jQuery， lodash
+    * 在 webpack.base.conf.js 中加入下面代码，则可以在每个vue 文件中直接使用 _ 来引用lodash，而不用每次都去import lodash 然后才能使用
+        ``` javascript 
+          plugins: [
+                new webpack.ProvidePlugin({
+                _: 'lodash'
+                })
+            ],
+        ```
