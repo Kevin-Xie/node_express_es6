@@ -49,7 +49,7 @@ class AuthHandler {
 
 	logout(req, res, next) {
 		req.logout();
-		res.redirect('/');
+		res.json({ success: true, message: 'logout successfully' })
 	};
 }
 
