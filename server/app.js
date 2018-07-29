@@ -10,7 +10,7 @@ var MongoStore = require('connect-mongo')(session);
 
 const config = require('config');
 
-import db from './config/db';
+import db from './lib/db';
 import passport from './config/passport';
 import router from './routes';
 var app = express();

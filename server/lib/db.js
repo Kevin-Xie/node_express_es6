@@ -9,7 +9,11 @@ mongoose.connect(config.db.uri, options)
 	.then(() => {
 		console.log(`connecting on DB: ${config.db.uri}`);
 	})
-	.catch( err => console.error('connection error'));
+	.catch( err => {
+		mongoose.disconnect();
+		console.error('connection error');
+		throw new Error(err);
+	});
 
 
 export default mongoose.connection;
