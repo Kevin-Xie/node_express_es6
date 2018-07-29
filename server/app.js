@@ -8,7 +8,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-import settings from './config/default';
+const config = require('config');
 
 import db from './config/db';
 import passport from './config/passport';
@@ -33,12 +33,12 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // init session, save session to DB
 app.use(session({
-  secret: settings.cookieSecret,
+  secret: config.cookieSecret,
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({
-    url: settings.db_url
+    url: config.db.uri
   })
 }));
 
