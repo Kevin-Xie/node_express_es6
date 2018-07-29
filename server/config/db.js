@@ -1,14 +1,13 @@
+const config = require('config');
 import mongoose from 'mongoose';
-
-let db_url = 'mongodb://localhost:27017/test';
 
 let options = {
 	useNewUrlParser: true
 }
 
-mongoose.connect(db_url, options)
+mongoose.connect(config.db.uri, options)
 	.then(() => {
-		console.log(`connecting on DB: ${db_url}`);
+		console.log(`connecting on DB: ${config.db.uri}`);
 	})
 	.catch( err => console.error('connection error'));
 
