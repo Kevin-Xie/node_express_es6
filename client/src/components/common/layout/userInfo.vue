@@ -26,6 +26,9 @@ export default {
   data() {
     return {
     	loginFormVisible: false,
+      func: {
+        logout
+      }
     }
   },
   components: {
@@ -47,7 +50,7 @@ export default {
   		this.loginFormVisible = false;
     },
     handleCommand(command) {
-      [command]();
+      this.func[command]();
     }
   }
 }
