@@ -6,7 +6,7 @@ export const login = async (userName, password) => {
         let user = await http.post('/api/auth/login', {userName, password});
         return user.data;
 	} catch (error) {
-        if(error.response.status === 401)
+        if(error.response.status === 401)   // backend will return 401 if userName or password is incorrect.
             throw new Error(error.response.data.message);
         else 
             throw new Error(error.response.status + ' ' + error.response.statusText);            
