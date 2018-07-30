@@ -33,7 +33,8 @@ class AuthHandler {
 	async login(req, res, next) {
 		passport.authenticate('local', (err, user, info) => {
 			if(err || !user) {
-				res.status(422).send(info);
+				console.log(info)
+				res.status(401).json(info);
 			} else {
 				req.login(user, err => {
 					if(err) {

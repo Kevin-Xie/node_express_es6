@@ -28,7 +28,7 @@ export default app => {
 				return done(null, false, { message: 'Incorrect userName' });
 			}
 			if(!user.authenticate(password)) {
-				return done(null, false, {message: 'Incorrect password'});
+				return done(null, false, { message: 'Incorrect password' });
 			}
 			user.password = user.salt = null;	//remove sensitive data
 			return done(null, user);

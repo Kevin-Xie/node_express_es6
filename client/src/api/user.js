@@ -6,7 +6,10 @@ export const login = async (userName, password) => {
         let user = await http.post('/api/auth/login', {userName, password});
         return user.data;
 	} catch (error) {
-		throw new Error(error);
+        if(error.response.status === 401)
+            throw new Error(error.response.data.message);
+        else 
+            throw new Error(error.response.status + ' ' + error.response.statusText);            
 	}
 }
 
@@ -15,7 +18,7 @@ export const register = async(userName, password) => {
         let response = await http.post('/api/auth/register', {userName, password})
         return response.data;
     } catch (error) {
-        throw new Error(error);
+        throw new Error(error.response.status + ' ' + error.response.statusText);
     }
 }
 

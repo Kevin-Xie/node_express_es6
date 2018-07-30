@@ -84,7 +84,10 @@ export default {
       this.$refs[formName].validate( valid => {
         if(valid && formName === 'loginForm') {
           this.doLogin();
+        } else {
+          this.doRegister();
         }
+        
       })
     },
 
@@ -99,15 +102,19 @@ export default {
         successTip('Login successfully');
       })
       .catch(err => {
-        console.log(err);
-        errorTip('Backend server error, please try it again.');
+        errorTip(err.message);
       })
     },
 
     doRegister() {
       register(this.basicInfo.userName, this.basicInfo.password)
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+      .then(user => {
+          this.userOnline(user);
+          successTip('Register and login successfully');
+        })
+      .catch(err => {
+        errorTip(err.message);
+      });
     },
 
     ...mapMutations([
