@@ -1,7 +1,14 @@
 <template>
   <div>
   	<div v-if="isLogin">
-  		<i class="">{{userName}}</i>
+      <el-dropdown @command="handleCommand">
+        <span class="el-dropdown-link">
+          {{userName}}<i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="logout">Logout</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
   	</div>
   	<div v-else>
   		<span class="pointer" @click="showLoginForm">Login | Register</span>
@@ -11,7 +18,9 @@
 </template>
 
 <script>
-import VLogin from '../../login/login'	
+import VLogin from '../../login/login';
+import {logout}	from '../../../api';
+
 export default {
   name: 'userInfo',
   data() {
@@ -36,7 +45,10 @@ export default {
   	},
   	closeLoginForm() {
   		this.loginFormVisible = false;
-  	}
+    },
+    handleCommand(command) {
+      [command]();
+    }
   }
 }
 </script>

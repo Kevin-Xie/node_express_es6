@@ -22,6 +22,10 @@ export const register = async(userName, password) => {
     }
 }
 
+export const logout = () => {
+    console.log('call logout')
+}
+
 export const getUserList = async () => {
     try {
         let users = await http.get('/api/users');
