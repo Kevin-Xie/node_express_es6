@@ -1,4 +1,5 @@
 import http from 'axios';
+import { resolve } from 'url';
 
 
 export const login = async (userName, password) => {
@@ -23,7 +24,11 @@ export const register = async(userName, password) => {
 }
 
 export const logout = () => {
-    console.log('call logout')
+    return new Promise((resolve, reject) => {
+        http.get('/api/auth/logout')
+        .then(response => resolve(response.data))
+        .catch(error => reject(error.response.status + ' ' + error.response.statusText)) 
+    })
 }
 
 export const getUserList = async () => {

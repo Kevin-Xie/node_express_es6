@@ -20,14 +20,18 @@
 <script>
 import VLogin from '../../login/login';
 import {logout}	from '../../../api';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'userInfo',
   data() {
     return {
     	loginFormVisible: false,
-      func: {
+      api: {
         logout
+      },
+      uiHandle: {
+        logout: this.handleLogoutUI
       }
     }
   },
@@ -49,9 +53,15 @@ export default {
   	closeLoginForm() {
   		this.loginFormVisible = false;
     },
+    handleLogoutUI() {
+      this.userOffline()
+    },
     handleCommand(command) {
-      this.func[command]();
-    }
+      this.api[command]().then(this.uiHandle[command]);
+    },
+    ...mapMutations([
+      'userOffline'
+    ])
   }
 }
 </script>
