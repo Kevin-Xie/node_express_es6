@@ -19,6 +19,7 @@
 
 <script>
 import VLogin from '../../login/login';
+import {successTip} from '../message';
 import {logout}	from '../../../api';
 import { mapMutations } from 'vuex';
 
@@ -54,7 +55,9 @@ export default {
   		this.loginFormVisible = false;
     },
     handleLogoutUI() {
-      this.userOffline()
+      this.userOffline();
+      this.closeLoginForm();
+      successTip("Logout Successfully");
     },
     handleCommand(command) {
       this.api[command]().then(this.uiHandle[command]);
